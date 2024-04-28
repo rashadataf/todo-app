@@ -1,0 +1,61 @@
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: ${DOCKERFILE}
+      target: ${DEVELOPMENT_PROCESS}
+      args:
+        - APP_WORKDIR=${APP_WORKDIR}
+        - NODE_ENV_DEVELOPMENT=${NODE_ENV_DEVELOPMENT}
+    ports:
+      - "${WEB_PORT}:${WEB_PORT}"
+      - "${SERVER_PORT}:${SERVER_PORT}"
+      - "${MOBILE_SERVER}:${MOBILE_SERVER}"
+    volumes:
+      - ${APP_VOLUME}
+    networks:
+      - app-network
+    environment:
+      - NODE_ENV=${NODE_ENV_DEVELOPMENT}
+    depends_on:
+      - db
+    command: ${COMMAND_DEV}
+
+  prod:
+    build:
+      context: .
+      dockerfile: ${DOCKERFILE}
+      target: ${PRODUCTION_PROCESS}
+      args:
+        - APP_WORKDIR=${APP_WORKDIR}
+        - NODE_ENV_PRODUCTION=${NODE_ENV_PRODUCTION}
+    ports:
+      - "${WEB_PORT}:${WEB_PORT}"
+      - "${SERVER_PORT}:${SERVER_PORT}"
+    environment:
+      - NODE_ENV=${NODE_ENV_PRODUCTION}
+    networks:
+      - app-network
+    depends_on:
+      - db
+    command: ${COMMAND_PROD}
+
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: ${DATABASE_NAME}
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+    volumes:
+      - ${POSTGRES_VOLUME}
+    networks:
+      - app-network
+    ports:
+      - "${DATABASE_PORT}:${DATABASE_PORT}"
+
+volumes:
+  postgres-data:
+
+networks:
+  app-network:
+    driver: bridge

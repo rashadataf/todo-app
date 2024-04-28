@@ -9,5 +9,21 @@
   "private": true,
   "workspaces": [
     "apps/*"
-  ]
+  ],
+  "scripts": {
+    "dev:web": "yarn workspace web dev",
+    "dev:server": "yarn workspace backend start:dev",
+    "dev:mobile": "yarn workspace mobile start --reset-cache",
+    "dev": "yarn dev:mobile & yarn dev:server & yarn dev:web",
+    "build:server": "yarn workspace backend build",
+    "build:web": "yarn workspace web build",
+    "build": "yarn build:server & yarn build:web",
+    "start:server": "yarn workspace backend start",
+    "start:web": "yarn workspace web start",
+    "start": "yarn start:server & yarn start:web",
+    "lint": "yarn workspace mobile lint & yarn workspace web lint & yarn workspace backend lint",
+    "test": "yarn workspace backend test & yarn workspace web test & yarn workspace mobil test",
+    "android": "yarn workspace mobile android",
+    "ios": "yarn workspace mobile ios"
+  }
 }
