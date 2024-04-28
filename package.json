@@ -1,0 +1,13 @@
+{
+  "name": "todo-app",
+  "version": "1.0.0",
+  "description": "todo app built with monorepo nextjs and react-native",
+  "main": "index.js",
+  "repository": "https://github.com/rashadataf/todo-app.git",
+  "author": "Rashad Ataf",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ]
+}
