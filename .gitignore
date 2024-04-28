@@ -1,16 +1,19 @@
 # General
-.DS_Store
-*.log
-*.pem
+**/.DS_Store
+**/logs
+**/*.log
+**/npm-debug.log*
+**/pnpm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
+**/lerna-debug.log*
+**/*.pem
 
 # Dependencies
 **/node_modules
 /.pnp
 .pnp.js
 .yarn/install-state.gz
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 
 # Xcode
 **/build/
@@ -41,12 +44,24 @@ yarn-error.log*
 **/*.keystore
 !**/debug.keystore
 
+# IDEs and editors
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
 # Next.js
 /.next/
 /out/
-
-# Production
-/build
 
 # Yarn Workspace
 .yarn/*
@@ -71,6 +86,7 @@ yarn-error.log*
 
 # Testing
 **/coverage
+/.nyc_output
 
 # Local env files
 .env*.local
@@ -84,3 +100,26 @@ next-env.d.ts
 
 # Temporary files created by Metro
 **/.metro-health-check*
+
+# compiled output
+**/dist
+
+# dotenv environment variable files
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+
+# temp directory
+.temp
+.tmp
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Diagnostic reports (https://nodejs.org/api/report.html)
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
