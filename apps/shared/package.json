@@ -1,5 +1,5 @@
 {
-  "name": "shared",
+  "name": "@workspace/shared",
   "version": "0.0.1",
   "description": "shared package between the project apps",
   "author": "Rashad Ataf",

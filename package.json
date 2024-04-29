@@ -27,5 +27,8 @@
     "test": "yarn workspace backend test & yarn workspace web test & yarn workspace mobil test",
     "android": "yarn workspace mobile android",
     "ios": "yarn workspace mobile ios"
+  },
+  "dependencies": {
+    "@workspace/shared": "^0.0.1"
   }
 }
