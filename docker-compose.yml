@@ -1,4 +1,82 @@
 services:
+  shared:
+    build:
+      context: .
+      dockerfile: ${DOCKERFILE}
+      target: shared
+      args:
+        - APP_WORKDIR=${APP_WORKDIR}
+        - NODE_ENV_DEVELOPMENT=${NODE_ENV_DEVELOPMENT}
+    volumes:
+      - ${NODE_MODULES_VOLUME}
+      - ${SHARED_VOLUME}
+    networks:
+      - app-network
+    environment:
+      - NODE_ENV=${NODE_ENV_DEVELOPMENT}
+    command: ${SHARED_COMMAND}
+
+  web:
+    build:
+      context: .
+      dockerfile: ${DOCKERFILE}
+      target: web
+      args:
+        - APP_WORKDIR=${APP_WORKDIR}
+        - NODE_ENV_DEVELOPMENT=${NODE_ENV_DEVELOPMENT}
+    ports:
+      - "${WEB_PORT}:${WEB_PORT}"
+    volumes:
+      - ${NODE_MODULES_VOLUME}
+      - ${WEB_VOLUME}
+    depends_on:
+      - shared
+    networks:
+      - app-network
+    environment:
+      - NODE_ENV=${NODE_ENV_DEVELOPMENT}
+    command: ${WEB_COMMAND}
+
+  backend:
+    build:
+      context: .
+      dockerfile: ${DOCKERFILE}
+      target: backend
+      args:
+        - APP_WORKDIR=${APP_WORKDIR}
+        - NODE_ENV_DEVELOPMENT=${NODE_ENV_DEVELOPMENT}
+    ports:
+      - "${BACKEND_PORT}:${BACKEND_PORT}"
+    volumes:
+      - ${NODE_MODULES_VOLUME}
+      - ${BACKEND_VOLUME}
+    depends_on:
+      - shared
+    networks:
+      - app-network
+    environment:
+      - NODE_ENV=${NODE_ENV_DEVELOPMENT}
+    command: ${BACKEND_COMMAND}
+
+  mobile:
+    build:
+      context: .
+      dockerfile: ${DOCKERFILE}
+      target: mobile
+      args:
+        - APP_WORKDIR=${APP_WORKDIR}
+        - NODE_ENV_DEVELOPMENT=${NODE_ENV_DEVELOPMENT}
+    ports:
+      - "${MOBILE_SERVER}:${MOBILE_SERVER}"
+    volumes:
+      - ${NODE_MODULES_VOLUME}
+      - ${MOBILE_VOLUME}
+    networks:
+      - app-network
+    environment:
+      - NODE_ENV=${NODE_ENV_DEVELOPMENT}
+    command: ${MOBILE_COMMAND}
+
   dev:
     build:
       context: .
@@ -7,10 +85,10 @@ services:
       args:
         - APP_WORKDIR=${APP_WORKDIR}
         - NODE_ENV_DEVELOPMENT=${NODE_ENV_DEVELOPMENT}
-    ports:
-      - "${WEB_PORT}:${WEB_PORT}"
-      - "${SERVER_PORT}:${SERVER_PORT}"
-      - "${MOBILE_SERVER}:${MOBILE_SERVER}"
+    # ports:
+    #   - "${WEB_PORT}:${WEB_PORT}"
+    #   - "${BACKEND_PORT}:${BACKEND_PORT}"
+    #   - "${MOBILE_SERVER}:${MOBILE_SERVER}"
     volumes:
       - ${APP_VOLUME}
     networks:
@@ -18,8 +96,10 @@ services:
     environment:
       - NODE_ENV=${NODE_ENV_DEVELOPMENT}
     depends_on:
-      - db
-    command: ${COMMAND_DEV}
+      - backend
+      - mobile
+      - web
+    command: ${DEV_COMMAND}
 
   prod:
     build:
@@ -31,14 +111,14 @@ services:
         - NODE_ENV_PRODUCTION=${NODE_ENV_PRODUCTION}
     ports:
       - "${WEB_PORT}:${WEB_PORT}"
-      - "${SERVER_PORT}:${SERVER_PORT}"
+      - "${BACKEND_PORT}:${BACKEND_PORT}"
     environment:
       - NODE_ENV=${NODE_ENV_PRODUCTION}
     networks:
       - app-network
     depends_on:
       - db
-    command: ${COMMAND_PROD}
+    command: ${PROD_COMMAND}
 
   db:
     image: postgres:latest
