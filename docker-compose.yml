@@ -85,12 +85,6 @@ services:
       args:
         - APP_WORKDIR=${APP_WORKDIR}
         - NODE_ENV_DEVELOPMENT=${NODE_ENV_DEVELOPMENT}
-    # ports:
-    #   - "${WEB_PORT}:${WEB_PORT}"
-    #   - "${BACKEND_PORT}:${BACKEND_PORT}"
-    #   - "${MOBILE_SERVER}:${MOBILE_SERVER}"
-    volumes:
-      - ${APP_VOLUME}
     networks:
       - app-network
     environment:

@@ -56,15 +56,6 @@ FROM base AS development
 
 ENV NODE_ENV=$NODE_ENV_DEVELOPMENT
 
-COPY --from=shared $APP_WORKDIR/apps/shared/ ./apps/shared
-
-COPY --from=web $APP_WORKDIR/apps/web/ ./apps/web
-
-COPY --from=backend $APP_WORKDIR/apps/backend/ ./apps/backend
-
-COPY --from=mobile $APP_WORKDIR/apps/mobile/ ./apps/mobile
-
-
 FROM base AS production
 
 ENV NODE_ENV=$NODE_ENV_PRODUCTION

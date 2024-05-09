@@ -10,7 +10,3 @@ export type ServerConfig = {
     port: number;
     database: DatabaseConfig;
 }
-
-export type Rashad = {
-    name: string;
-}
