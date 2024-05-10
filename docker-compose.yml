@@ -1,6 +1,7 @@
 services:
   shared:
     build:
+      container_name: todo_shared
       context: .
       dockerfile: ${DOCKERFILE}
       target: shared
@@ -17,6 +18,7 @@ services:
     command: ${SHARED_COMMAND}
 
   web:
+    container_name: todo_web
     build:
       context: .
       dockerfile: ${DOCKERFILE}
@@ -38,6 +40,7 @@ services:
     command: ${WEB_COMMAND}
 
   backend:
+    container_name: todo_backend
     build:
       context: .
       dockerfile: ${DOCKERFILE}
@@ -59,6 +62,9 @@ services:
     command: ${BACKEND_COMMAND}
 
   mobile:
+    container_name: todo_mobile
+    stdin_open: true
+    tty: true
     build:
       context: .
       dockerfile: ${DOCKERFILE}
@@ -78,6 +84,7 @@ services:
     command: ${MOBILE_COMMAND}
 
   dev:
+    container_name: todo_dev
     build:
       context: .
       dockerfile: ${DOCKERFILE}
