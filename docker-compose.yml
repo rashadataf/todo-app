@@ -1,7 +1,7 @@
 services:
   shared:
+    container_name: todo_shared
     build:
-      container_name: todo_shared
       context: .
       dockerfile: ${DOCKERFILE}
       target: shared
@@ -59,6 +59,12 @@ services:
       - app-network
     environment:
       - NODE_ENV=${NODE_ENV_DEVELOPMENT}
+      - BACKEND_PORT=${BACKEND_PORT}
+      - DATABASE_HOST=${DATABASE_HOST}
+      - DATABASE_NAME=${DATABASE_NAME}
+      - DATABASE_USER=${DATABASE_USER}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - DATABASE_PORT=${DATABASE_PORT}
     command: ${BACKEND_COMMAND}
 
   mobile:

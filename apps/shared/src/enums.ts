@@ -1,8 +1,8 @@
 export enum ConfigKey {
-    SERVER_PORT = "port",
-    DATABASE_HOST = "database.host",
-    DATABASE_NAME = "database.name",
-    DATABASE_USER = "database.user",
-    DATABASE_PASSWORD = "database.password",
-    DATABASE_PORT = "database.port",
+    BACKEND_PORT = "BACKEND_PORT",
+    DATABASE_HOST = "DATABASE_HOST",
+    DATABASE_NAME = "DATABASE_NAME",
+    DATABASE_USER = "DATABASE_USER",
+    DATABASE_PASSWORD = "DATABASE_PASSWORD",
+    DATABASE_PORT = "DATABASE_PORT",
 }
