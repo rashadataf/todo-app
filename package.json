@@ -24,6 +24,7 @@
     "start:web": "yarn workspace web start",
     "start": "yarn build:shared & yarn start:backend & yarn start:web",
     "lint": "yarn workspace mobile lint & yarn workspace web lint & yarn workspace backend lint",
+    "test:backend": "yarn workspace backend test && yarn workspace backend test:e2e",
     "test": "yarn workspace backend test & yarn workspace web test & yarn workspace mobil test",
     "android": "yarn workspace mobile android",
     "ios": "yarn workspace mobile ios"
