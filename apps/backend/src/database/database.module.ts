@@ -17,7 +17,7 @@ import { ConfigService } from '../config/config.service';
                 database: config.databaseName,
                 entities: [__dirname + '/../**/*.entity{.ts,.js}'],
                 synchronize: config.nodeEnvironment !== NodeEnvironment.PRODUCTION,
-                migrationsRun: true,
+                migrationsRun: false,
                 migrations: [__dirname + '/migrations/**/*{.ts,.js}']
             }),
         }),
