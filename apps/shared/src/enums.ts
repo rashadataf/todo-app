@@ -5,4 +5,11 @@ export enum ConfigKey {
     DATABASE_USER = "DATABASE_USER",
     DATABASE_PASSWORD = "DATABASE_PASSWORD",
     DATABASE_PORT = "DATABASE_PORT",
+    NODE_ENV = "NODE_ENV",
+}
+
+export enum NodeEnvironment {
+    DEVELOPMENT = "development",
+    PRODUCTION = "production",
+    LOCAL = "local"
 }
