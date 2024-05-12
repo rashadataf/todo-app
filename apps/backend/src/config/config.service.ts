@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { ConfigKey } from '@workspace/shared';
+import { ConfigKey, NodeEnvironment } from '@workspace/shared';
 
 @Injectable()
 export class ConfigService {
@@ -13,6 +13,7 @@ export class ConfigService {
             [ConfigKey.DATABASE_USER]: process.env.DATABASE_USER,
             [ConfigKey.DATABASE_PASSWORD]: process.env.DATABASE_PASSWORD,
             [ConfigKey.DATABASE_PORT]: process.env.DATABASE_PORT,
+            [ConfigKey.NODE_ENV]: process.env.NODE_ENV,
         };
     }
 
@@ -42,5 +43,9 @@ export class ConfigService {
 
     get databasePort(): number {
         return Number(this.get(ConfigKey.DATABASE_PORT));
+    }
+
+    get nodeEnvironment(): NodeEnvironment {
+        return this.get(ConfigKey.NODE_ENV) as NodeEnvironment;
     }
 }

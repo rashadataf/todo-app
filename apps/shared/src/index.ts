@@ -1,4 +1,4 @@
-import { ConfigKey } from './enums';
+import { ConfigKey, NodeEnvironment } from './enums';
 import { DatabaseConfig, ServerConfig } from './types';
 
 export type {
@@ -7,5 +7,6 @@ export type {
 };
 
 export {
-    ConfigKey
+    ConfigKey,
+    NodeEnvironment
 }
