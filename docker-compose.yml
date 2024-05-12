@@ -31,6 +31,7 @@ services:
     volumes:
       - ${NODE_MODULES_VOLUME}
       - ${WEB_VOLUME}
+      - ${SHARED_VOLUME}
     depends_on:
       - shared
     networks:
@@ -53,6 +54,7 @@ services:
     volumes:
       - ${NODE_MODULES_VOLUME}
       - ${BACKEND_VOLUME}
+      - ${SHARED_VOLUME}
     depends_on:
       - shared
     networks:
@@ -83,6 +85,7 @@ services:
     volumes:
       - ${NODE_MODULES_VOLUME}
       - ${MOBILE_VOLUME}
+      - ${SHARED_VOLUME}
     networks:
       - app-network
     environment:
@@ -103,6 +106,7 @@ services:
     environment:
       - NODE_ENV=${NODE_ENV_DEVELOPMENT}
     depends_on:
+      - db
       - backend
       - mobile
       - web
@@ -123,8 +127,6 @@ services:
       - NODE_ENV=${NODE_ENV_PRODUCTION}
     networks:
       - app-network
-    depends_on:
-      - db
     command: ${PROD_COMMAND}
 
   db:
