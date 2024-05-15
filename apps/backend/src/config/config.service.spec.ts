@@ -23,6 +23,7 @@ describe('ConfigService', () => {
     expect(configService.databaseUser).toBeDefined();
     expect(configService.databasePassword).toBeDefined();
     expect(configService.databasePort).toBeDefined();
+    expect(configService.nodeEnvironment).toBeDefined();
   });
 
   it('should ensure that all configuration values have correct types', () => {
