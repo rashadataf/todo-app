@@ -4,6 +4,7 @@ import { AppModule } from '../src/app.module';
 import { ConfigService } from '../src/config/config.service';
 import { NodeEnvironment } from '@workspace/shared';
 import * as request from 'supertest';
+import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
 
 class MockConfigService {
   databaseName = process.env.TEST_DATABASE_NAME;
@@ -25,8 +26,9 @@ describe('AppController (e2e)', () => {
       .useClass(MockConfigService)
       .compile();
 
-    app = moduleFixture.createNestApplication();
+    app = moduleFixture.createNestApplication<NestFastifyApplication>(new FastifyAdapter());
     await app.init();
+    await app.getHttpAdapter().getInstance().ready();
   });
 
   it('/ (GET)', () => {
