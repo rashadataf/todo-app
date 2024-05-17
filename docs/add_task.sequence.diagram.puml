@@ -1,0 +1,15 @@
+@startuml
+
+actor User
+
+User -> HomeScreen: addTask()
+HomeScreen -> TaskController: createTask()
+TaskController -> TaskService: validateTaskData()
+TaskService -> TaskService: saveTask()
+TaskService -> TaskTable: insert(task)
+TaskTable -> TaskService: confirmation
+TaskService -> TaskController: taskSaved
+TaskController -> HomeScreen: taskCreated
+HomeScreen -> User: displayNewTask()
+
+@enduml

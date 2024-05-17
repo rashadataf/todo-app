@@ -1,0 +1,43 @@
+name: Generate UML Diagrams
+
+on: [push, pull_request]
+
+jobs:
+  generate-diagrams:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Java
+      uses: actions/setup-java@v2
+      with:
+        distribution: 'adopt'
+        java-version: '11'
+
+    - name: Install Graphviz
+      run: sudo apt-get install graphviz -y
+
+    - name: Download PlantUML
+      run: curl -LO https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
+
+    - name: Generate UML diagrams
+      run: java -jar plantuml.jar -tpng docs/*.puml
+
+    - name: Commit diagrams
+      run: |
+        git config --global user.name 'github-actions'
+        git config --global user.email 'github-actions@github.com'
+        git checkout ${{ github.ref }}
+        git add docs/*.png
+        git commit -m 'Update UML diagrams'
+        git push origin ${{ github.ref }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Upload diagrams as artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: uml-diagrams
+        path: docs/*.png

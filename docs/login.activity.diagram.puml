@@ -1,0 +1,29 @@
+@startuml
+start
+partition "User" {
+  :Open Login Page;
+  :Enter Email and Password;
+  :Click Login Button;
+}
+
+partition "Backend" {
+  :Receive Login Request;
+  :Validate Credentials;
+  if (Credentials Valid?) then (yes)
+    :Generate Auth Token;
+    partition "User" {
+      :Redirect to Home Page;
+    }
+  else (no)
+    :Return Error Message;
+    partition "User" {
+      :Display Error Message;
+    }
+  endif
+}
+
+partition "User" {
+  stop
+}
+
+@enduml
