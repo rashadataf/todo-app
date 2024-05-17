@@ -17,10 +17,10 @@ jobs:
         java-version: '11'
 
     - name: Install Graphviz
-      run: sudo apt-get install graphviz -y
+      run: sudo apt-get install -y graphviz
 
     - name: Download PlantUML
-      run: curl -LO https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
+      run: curl -L -o plantuml.jar https://github.com/plantuml/plantuml/releases/download/v1.2023.7/plantuml-1.2023.7.jar
 
     - name: Generate UML diagrams
       run: java -jar plantuml.jar -tpng docs/*.puml
