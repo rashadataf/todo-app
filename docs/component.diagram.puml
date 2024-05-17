@@ -1,0 +1,36 @@
+@startuml
+
+component "Frontend" {
+  [HomeScreen]
+  [LoginScreen]
+  [SignUpScreen]
+  [TaskDetailsScreen]
+  [EditTaskScreen]
+  [MenuScreen]
+}
+
+component "Backend" {
+  [UserController]
+  [TaskController]
+  [AuthService]
+  [TaskService]
+}
+
+component "Database" {
+  [UserTable]
+  [TaskTable]
+}
+
+[HomeScreen] --> [TaskController]
+[LoginScreen] --> [AuthService]
+[SignUpScreen] --> [AuthService]
+[TaskDetailsScreen] --> [TaskController]
+[EditTaskScreen] --> [TaskController]
+[MenuScreen] --> [TaskController]
+
+[UserController] --> [UserTable]
+[TaskController] --> [TaskTable]
+[AuthService] --> [UserTable]
+[TaskService] --> [TaskTable]
+
+@enduml

@@ -1,0 +1,10 @@
+@startuml
+
+[*] --> New
+New --> InProgress : startTask()
+InProgress --> Completed : completeTask()
+InProgress --> Cancelled : cancelTask()
+Cancelled --> [*]
+Completed --> [*]
+
+@enduml

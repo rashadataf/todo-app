@@ -1,0 +1,23 @@
+@startuml
+
+actor User
+
+rectangle "Todo App" {
+  usecase "Register" as UC1
+  usecase "Login" as UC2
+  usecase "Add Task" as UC3
+  usecase "Update Task" as UC4
+  usecase "Delete Task" as UC5
+  usecase "Mark Task Complete" as UC6
+  usecase "View Tasks" as UC7
+}
+
+User -> UC1
+User -> UC2
+User -> UC3
+User -> UC4
+User -> UC5
+User -> UC6
+User -> UC7
+
+@enduml

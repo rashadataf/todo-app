@@ -1,0 +1,56 @@
+@startuml
+
+class SignUpScreen {
+  + fullName: String
+  + email: String
+  + password: String
+  + confirmPassword: String
+  + signUp(): void
+}
+
+class LoginScreen {
+  + email: String
+  + password: String
+  + rememberMe: Boolean
+  + login(): void
+}
+
+class HomeScreen {
+  + tasks: List<TodoItem>
+  + filter: String
+  + addTask(): void
+  + viewTaskDetails(taskId: String): void
+}
+
+class TaskDetailsScreen {
+  + task: TodoItem
+  + viewTask(taskId: String): void
+}
+
+class EditTaskScreen {
+  + task: TodoItem
+  + editTask(taskId: String): void
+}
+
+class MenuScreen {
+  + categories: List<String>
+  + viewCategory(category: String): void
+}
+
+class TodoItem {
+  + taskId: String
+  + title: String
+  + description: String
+  + dueDate: Date
+  + priority: String
+  + remindAt: Date
+  + attachment: File
+}
+
+SignUpScreen -[hidden]--> LoginScreen
+LoginScreen -[hidden]--> HomeScreen
+HomeScreen -[hidden]--> TaskDetailsScreen
+TaskDetailsScreen -[hidden]--> EditTaskScreen
+EditTaskScreen -[hidden]--> MenuScreen
+
+@enduml
