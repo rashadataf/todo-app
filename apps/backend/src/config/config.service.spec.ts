@@ -24,6 +24,8 @@ describe('ConfigService', () => {
     expect(configService.databasePassword).toBeDefined();
     expect(configService.databasePort).toBeDefined();
     expect(configService.nodeEnvironment).toBeDefined();
+    expect(configService.jwtExpiration).toBeDefined();
+    expect(configService.jwtSecret).toBeDefined();
   });
 
   it('should ensure that all configuration values have correct types', () => {
@@ -33,6 +35,8 @@ describe('ConfigService', () => {
     expect(typeof configService.databaseUser).toBe('string');
     expect(typeof configService.databasePassword).toBe('string');
     expect(typeof configService.databasePort).toBe('number');
+    expect(typeof configService.jwtExpiration).toBe('string');
+    expect(typeof configService.jwtSecret).toBe('string');
   });
 
 });

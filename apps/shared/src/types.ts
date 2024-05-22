@@ -9,4 +9,10 @@ export type DatabaseConfig = {
 export type ServerConfig = {
     port: number;
     database: DatabaseConfig;
+    jwt: JWTConfig;
+}
+
+export type JWTConfig = {
+    secret: string;
+    expiration: string;
 }

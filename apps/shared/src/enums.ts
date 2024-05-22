@@ -6,6 +6,8 @@ export enum ConfigKey {
     DATABASE_PASSWORD = "DATABASE_PASSWORD",
     DATABASE_PORT = "DATABASE_PORT",
     NODE_ENV = "NODE_ENV",
+    JWT_SECRET = 'JWT_SECRET',
+    JWT_EXPIRATION = 'JWT_EXPIRATION',
 }
 
 export enum NodeEnvironment {

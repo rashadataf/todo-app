@@ -14,9 +14,9 @@ export class User {
     @Column()
     password: string;
 
-    @Column()
+    @Column({ default: new Date() })
     createdAt: Date;
 
-    @Column()
+    @Column({ default: new Date() })
     updatedAt: Date;
 }

@@ -14,6 +14,8 @@ export class ConfigService {
             [ConfigKey.DATABASE_PASSWORD]: process.env.DATABASE_PASSWORD,
             [ConfigKey.DATABASE_PORT]: process.env.DATABASE_PORT,
             [ConfigKey.NODE_ENV]: process.env.NODE_ENV,
+            [ConfigKey.JWT_SECRET]: process.env.JWT_SECRET,
+            [ConfigKey.JWT_EXPIRATION]: process.env.JWT_EXPIRATION,
         };
     }
 
@@ -47,5 +49,13 @@ export class ConfigService {
 
     get nodeEnvironment(): NodeEnvironment {
         return this.get(ConfigKey.NODE_ENV) as NodeEnvironment;
+    }
+
+    get jwtSecret(): string {
+        return this.get(ConfigKey.JWT_SECRET);
+    }
+
+    get jwtExpiration(): string {
+        return this.get(ConfigKey.JWT_EXPIRATION);
     }
 }
